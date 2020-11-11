@@ -1,5 +1,7 @@
 Module.register("covid", {
-	defaults: {},
+	defaults: {
+		location: ""
+	},
 	LocalNum: [],
 	TotalNum: 0,
 	start: function () {
@@ -9,7 +11,10 @@ Module.register("covid", {
 	getDom: function () {
 		var element = document.createElement("div");
 		element.className = "myContent";
-		element.innerHTML = this.LocalNum[1];
+
+		var index = this.LocalNum.findIndex((obj) => obj.gubun == this.config.location);
+		element.innerHTML = this.config.location + " : " + this.LocalNum[index].localocccnt;
+
 		var subElement = document.createElement("p");
 		subElement.innerHTML = "일일 확진자 : " + this.TotalNum;
 		element.appendChild(subElement);
