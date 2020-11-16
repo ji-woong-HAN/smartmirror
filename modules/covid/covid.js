@@ -1,6 +1,6 @@
 Module.register("covid", {
 	defaults: {
-		location: ""
+		location: []
 	},
 	LocalNum: [],
 	TotalNum: 0,
@@ -10,10 +10,16 @@ Module.register("covid", {
 	},
 	getDom: function () {
 		var element = document.createElement("div");
-		element.className = "myContent";
+		element.className = "covid";
 
-		var index = this.LocalNum.findIndex((obj) => obj.gubun == this.config.location);
-		element.innerHTML = this.config.location + " : " + this.LocalNum[index].localocccnt;
+		var index = [];
+		for (i = 0; i < this.config.location.length; i++) {
+			index[i] = this.LocalNum.findIndex((obj) => obj.gubun == this.config.location[i]);
+		}
+
+		for (i = 0; i < this.config.location.length; i++) {
+			element.innerHTML += this.config.location[i] + " : " + this.LocalNum[index[i]].localocccnt + "<br />";
+		}
 
 		var subElement = document.createElement("p");
 		subElement.innerHTML = "일일 확진자 : " + this.TotalNum;
