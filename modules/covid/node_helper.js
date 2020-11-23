@@ -3,7 +3,7 @@ var request = require("request");
 var xml2json = require("node-xml2json");
 
 var today = new Date();
-var dd = today.getDate() - 2;
+var dd = today.getDate();
 if (dd < 10) {
 	dd = "0" + dd;
 }
@@ -37,19 +37,16 @@ module.exports = NodeHelper.create({
 				var json = xml2json.parser(xml); //xml형식을 json형식으로 변환
 				let COVID = [];
 				COVID = json.xml.response.body.items.item;
-
-				var localcnt = []; //지역별 일일 확진자
 				var totalcnt = 0; //국내 일일 확진자
-				/*for (var i = 1; i < 18; i++) {      //지역별 일일 확진자
-                localcnt[i - 1] = `${COVID[i].gubun} : ${COVID[i].localocccnt}`;
-            }*/
+
 				for (var i = 1; i < 18; i++) {
 					//국내 일일 확진자
 					totalcnt += COVID[i].localocccnt;
 				}
 
-				self.sendSocketNotification("LOCAL", COVID);
+				self.sendSocketNotification("COVID", COVID);
 				self.sendSocketNotification("TOTAL", totalcnt);
+				self.sendSocketNotification("DATE", date_str);
 				console.log("send to totalcnt");
 			}
 		);

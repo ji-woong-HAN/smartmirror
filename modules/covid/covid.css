@@ -1,0 +1,29 @@
+.covid-table {
+  table-layout: auto;
+  text-align: center;
+  border-bottom: 1px solid white;
+}
+.covid-td {
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+}
+.covid-tr0 {
+  font-size: large;
+  text-align: left;
+}
+.covid-td1 {
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+}
+.covid-td2 {
+  border-left: 1px solid white;
+  font-size: x-large;
+}
+.covid-td3 {
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  font-size: x-large;
+}
